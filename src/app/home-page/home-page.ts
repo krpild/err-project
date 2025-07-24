@@ -1,15 +1,14 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ApiService } from '../services/api-service';
-import { catchError } from 'rxjs';
-import { JsonPipe } from '@angular/common';
+
 import { bannerCollection } from '../models/bannerCollection';
 import { banner } from '../models/banner';
-import { Banner } from "../components/banner/banner";
+
 import { Carousel } from "../components/carousel/carousel";
 
 @Component({
   selector: 'app-home-page',
-  imports: [Banner, Carousel],
+  imports: [Carousel],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css'
 })
@@ -29,8 +28,9 @@ export class HomePage implements OnInit {
           let bannerInstance: banner = {
             id: item.id,
             redirectUrl: item.canonicalUrl,
-            imageUrl: item.verticalPhotos[0].photoUrlBase
+            imageUrl: item.verticalPhotos[0].photoTypes[80].url
           }
+          console.log(item.verticalPhotos[0].photoTypes[34])
           bannerCollectionInstance.collection.push(bannerInstance);
         })
         this.bannerCollections.set([

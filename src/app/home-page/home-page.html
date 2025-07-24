@@ -1,4 +1,4 @@
 @for (bannerCollection of bannerCollections(); track $index) {
-    <div>{{bannerCollection.header}}</div>
+    <div class="header">{{bannerCollection.header}}</div>
     <app-carousel [banners]="bannerCollection.collection"></app-carousel>
 }

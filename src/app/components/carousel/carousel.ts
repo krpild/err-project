@@ -1,12 +1,11 @@
 import { Component, Input, signal } from '@angular/core';
-import { bannerCollection } from '../../models/bannerCollection';
 import { banner } from '../../models/banner';
 import { ITEMS_DISPLAYED } from '../../constants';
 import { Banner } from "../banner/banner";
 
 @Component({
   selector: 'app-carousel',
-  imports: [Banner],
+  imports: [],
   templateUrl: './carousel.html',
   styleUrl: './carousel.css'
 })
@@ -20,17 +19,13 @@ export class Carousel {
 
   moveAlongSliderRight(event: MouseEvent) {
     this.determineMoveAmountRight()
-    console.log(this.sizePercentage())
     this.percentage_string.set("translateX(" + this.percentage_value().toString() + "%)")
-    console.log(this.percentage_string())
-
   }
 
   moveAlongSliderLeft(event: MouseEvent) {
     this.determineMoveAmountLeft()
 
     this.percentage_string.set("translateX(" + this.percentage_value().toString() + "%)")
-    console.log(this.percentage_string())
   }
 
   determineMoveAmountRight() {
@@ -57,4 +52,9 @@ export class Carousel {
       this.percentage_value.set(this.percentage_value() + 100)
     }
   }
+
+  redirectTo(url: string) {
+    window.location.href = url;
+  }
+
 }

@@ -1,0 +1,12 @@
+body {
+    margin: 0;
+}
+
+.header {
+    font-family: sans-serif;
+    letter-spacing: .1em;
+    font-size: xx-large;
+    margin-left: 5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}

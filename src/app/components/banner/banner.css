@@ -1,0 +1,13 @@
+*{
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 50%;
+    flex: 0 0 50%;
+    padding: .25rem;
+}
+
+img {
+    border-radius: 0.5rem;
+}

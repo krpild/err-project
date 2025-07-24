@@ -20,7 +20,14 @@ img {
     max-width: 50%;
     flex: 0 0 50%;
     padding: .25rem;
+    border-radius: 0.5rem;
+    transition: 200ms ease-in-out;
+    &:hover{
+        cursor: pointer;
+        filter: brightness(50%);
+    }
 }
+
 
 .handler{
     cursor: pointer;

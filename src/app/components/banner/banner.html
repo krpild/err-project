@@ -1,6 +1,1 @@
-<div class="imageContainer">
-    <a [href]="redirectUrl">
-        <img [src]="bannerImage">
-    </a>
-</div>
-
+<img [src]="bannerImage" [style.max-width]="sizePercentage()" [style.flex]="'0 0 ' + sizePercentage()">
