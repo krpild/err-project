@@ -4,17 +4,19 @@ import { catchError } from 'rxjs';
 import { JsonPipe } from '@angular/common';
 import { bannerCollection } from '../models/bannerCollection';
 import { banner } from '../models/banner';
+import { Banner } from "../components/banner/banner";
+import { Carousel } from "../components/carousel/carousel";
 
 @Component({
   selector: 'app-home-page',
-  imports: [JsonPipe],
+  imports: [Banner, Carousel],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css'
 })
 export class HomePage implements OnInit {
   apiService = inject(ApiService)
   
-  bannerCollections : Array<bannerCollection> = [];
+  bannerCollections = signal<Array<bannerCollection>>([]);
 
   ngOnInit(): void {
     this.apiService.getEverythingFromApi().subscribe(groups =>{
@@ -31,7 +33,10 @@ export class HomePage implements OnInit {
           }
           bannerCollectionInstance.collection.push(bannerInstance);
         })
-        this.bannerCollections.push(bannerCollectionInstance)
+        this.bannerCollections.set([
+          ...this.bannerCollections(),
+          bannerCollectionInstance
+        ]);
       });
       console.log(this.bannerCollections)
     })
