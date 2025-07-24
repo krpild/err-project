@@ -12,13 +12,18 @@ import { JsonPipe } from '@angular/common';
 export class HomePage implements OnInit {
   apiService = inject(ApiService)
   //this is evil.
-  infoDump : any;
+  infoDump! : string;
 
   ngOnInit(): void {
-    this.apiService.getEverythingFromApi()
-    .pipe(
-      catchError((err) => {console.log(err); throw err;}))
-      .subscribe((data) => {this.infoDump = data})
-    console.log(this.infoDump)
+    this.apiService.getEverythingFromApi().subscribe(groups =>{
+      groups.forEach((groupItems:any) => {
+        console.log(groupItems.header)
+        groupItems.data.forEach((item:any) => {
+          console.log(item.canonicalUrl)
+          console.log(item.verticalPhotos[0].photoUrlBase)
+        })
+      });
+    })
+    
   }
 }

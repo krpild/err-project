@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { API_URL } from '../constants';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,8 @@ import { API_URL } from '../constants';
 export class ApiService {
   http = inject(HttpClient);
   getEverythingFromApi() {
-    return this.http.get(API_URL);
-  }
+  return this.http.get<any>(API_URL).pipe(
+    map(json => json.data.category.frontPage.filter((item:any) => item.highTimeline))
+  );
+}
 }
