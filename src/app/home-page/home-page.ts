@@ -2,6 +2,8 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { ApiService } from '../services/api-service';
 import { catchError } from 'rxjs';
 import { JsonPipe } from '@angular/common';
+import { bannerCollection } from '../models/bannerCollection';
+import { banner } from '../models/banner';
 
 @Component({
   selector: 'app-home-page',
@@ -11,19 +13,27 @@ import { JsonPipe } from '@angular/common';
 })
 export class HomePage implements OnInit {
   apiService = inject(ApiService)
-  //this is evil.
-  infoDump! : string;
+  
+  bannerCollections : Array<bannerCollection> = [];
 
   ngOnInit(): void {
     this.apiService.getEverythingFromApi().subscribe(groups =>{
       groups.forEach((groupItems:any) => {
-        console.log(groupItems.header)
+        let bannerCollectionInstance: bannerCollection = {
+          header: groupItems.header,
+          collection: []
+        }
         groupItems.data.forEach((item:any) => {
-          console.log(item.canonicalUrl)
-          console.log(item.verticalPhotos[0].photoUrlBase)
+          let bannerInstance: banner = {
+            id: item.id,
+            redirectUrl: item.canonicalUrl,
+            imageUrl: item.verticalPhotos[0].photoUrlBase
+          }
+          bannerCollectionInstance.collection.push(bannerInstance);
         })
+        this.bannerCollections.push(bannerCollectionInstance)
       });
+      console.log(this.bannerCollections)
     })
-    
   }
 }
