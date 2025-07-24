@@ -1,7 +1,6 @@
 import { Component, Input, signal } from '@angular/core';
 import { banner } from '../../models/banner';
 import { ITEMS_DISPLAYED } from '../../constants';
-import { Banner } from "../banner/banner";
 
 @Component({
   selector: 'app-carousel',
@@ -13,7 +12,7 @@ export class Carousel {
   @Input() banners!: Array<banner>;
   percentage_string = signal('translateX(0%)')
   percentage_value = signal(0);
-  sizePercentage = signal((1 / ITEMS_DISPLAYED * 100).toString() + "%")
+  bannerSizePercentage = signal((1 / ITEMS_DISPLAYED * 100).toString() + "%")
   leftHandlerHidden = signal(true)
   rightHandlerHidden = signal(false)
 

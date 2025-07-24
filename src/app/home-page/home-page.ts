@@ -18,8 +18,8 @@ export class HomePage implements OnInit {
   bannerCollections = signal<Array<bannerCollection>>([]);
 
   ngOnInit(): void {
-    this.apiService.getEverythingFromApi().subscribe(groups =>{
-      groups.forEach((groupItems:any) => {
+    this.apiService.getDataForCarouselFromApi().subscribe(data =>{
+      data.forEach((groupItems:any) => {
         let bannerCollectionInstance: bannerCollection = {
           header: groupItems.header,
           collection: []
