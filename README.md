@@ -2,7 +2,19 @@
 
 ## Projekti käivitamine
 
+Kohalikuks jooksutamiseks kloneerige endale projekt. Olles projekti kaustas jooksutage:
 
+```bash
+npm install
+```
+
+ja siis
+
+```bash
+npm start
+```
+
+See peaks nüüd töötama aadressil http://localhost:4200/
 
 ## Taust
 
